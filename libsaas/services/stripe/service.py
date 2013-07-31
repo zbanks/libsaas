@@ -9,6 +9,7 @@ from .charges import Charges, Charge
 from .coupons import Coupons, Coupon
 from .customers import Customers, Customer
 from .invoices import Invoices, Invoice, InvoiceItems, InvoiceItem
+from .transfers import Transfers, Transfer
 
 
 class Stripe(base.Resource):
@@ -146,3 +147,17 @@ class Stripe(base.Resource):
         Return the resource corresponding to a single invoiceitem.
         """
         return InvoiceItem(self, id)
+    
+    @base.resource(Transfers)
+    def transfers(self):
+        """
+        Return the resource corresponding to a all transfers.
+        """
+        return Transfers(self)
+
+    @base.resource(Transfer)
+    def transfer(self, id):
+        """
+        Return the resource corresponding to a single transfer.
+        """
+        return Transfer(self, id)

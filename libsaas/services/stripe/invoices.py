@@ -74,7 +74,7 @@ class Invoice(InvoicesBaseResource):
 class Invoices(InvoicesBaseResource):
 
     @base.apimethod
-    def get(self, customer=None, count=None, offset=None):
+    def get(self, **kwargs):
         """
         Fetch all of the objects.
 
@@ -89,8 +89,7 @@ class Invoices(InvoicesBaseResource):
             the requested number of objects starting at that offset.
         :vartype offset: int
         """
-        params = base.get_params(None, locals())
-        request = http.Request('GET', self.get_url(), params)
+        request = http.Request('GET', self.get_url(), kwargs)
 
         return request, parsers.parse_json
 
@@ -130,7 +129,7 @@ class InvoiceItem(InvoiceItemBaseResource):
 class InvoiceItems(InvoiceItemBaseResource):
 
     @base.apimethod
-    def get(self, customer=None, count=None, offset=None):
+    def get(self, **kwargs):
         """
         Fetch all of the objects.
 
@@ -145,8 +144,7 @@ class InvoiceItems(InvoiceItemBaseResource):
             the requested number of objects starting at that offset.
         :vartype offset: int
         """
-        params = base.get_params(None, locals())
-        request = http.Request('GET', self.get_url(), params)
+        request = http.Request('GET', self.get_url(), kwargs)
 
         return request, parsers.parse_json
 

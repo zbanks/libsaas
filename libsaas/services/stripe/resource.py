@@ -22,7 +22,7 @@ class StripeResource(base.RESTResource):
 class ListResourceMixin(object):
 
     @base.apimethod
-    def get(self, count=None, offset=None):
+    def get(self, **kwargs):
         """
         Fetch all of the objects.
 
@@ -33,8 +33,12 @@ class ListResourceMixin(object):
         :var offset: An offset into your object array. The API will return
             the requested number of objects starting at that offset.
         :vartype offset: int
+
+        :var created: A filter on hte list based on the object `created`
+            field, which is a string with an exact UTC timestamp.
+        :vartype offset: int
         """
-        params = base.get_params(None, locals())
-        request = http.Request('GET', self.get_url(), params)
+        #params = base.get_params(None, locals())
+        request = http.Request('GET', self.get_url(), kwargs)
 
         return request, parsers.parse_json
